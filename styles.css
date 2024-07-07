@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game {
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+#output {
+    border: 1px solid #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+#input {
+    width: calc(100% - 100px);
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    width: 80px;
+    cursor: pointer;
+}
