@@ -1,15 +1,18 @@
 {
   "name": "dimmplace",
   "version": "1.0.0",
-  "description": "Based text game",
-  "main": "index.js",
+  "description": "Un juego de aventura basado en texto",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && electron .",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^31.1.0"
+    "@types/node": "^20.14.10",
+    "electron": "^31.1.0",
+    "typescript": "^5.5.3"
   }
 }

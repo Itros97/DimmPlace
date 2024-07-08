@@ -1,0 +1,40 @@
+/* Estilo básico de página */
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Estilo de encabezados */
+  h1, h2, h3 {
+    color: #ffffff;
+  }
+  
+  /* Estilo de párrafos */
+  p {
+    color: #cccccc;
+  }
+  
+  /* Contenedor principal del juego */
+  #game-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #333333;
+  }
+  
+  /* Estilo de botones y enlaces */
+  button, a {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+  }
+  
+  button:hover, a:hover {
+    background-color: #555555;
+  }
+  
