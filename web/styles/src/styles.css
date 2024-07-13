@@ -1,0 +1,82 @@
+/* Estilo básico de página */
+body {
+    --transition: 5s;
+    background: rgb(26, 26, 26);
+    color: #ffffff;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    transition: background var(--transition) linear;
+}
+
+body.dark {
+    background: rgb(216, 216, 216);
+}
+
+/* Estilo de encabezados */
+h1,
+h2,
+h3 {
+    color: #ffffff;
+}
+
+/* Estilo de párrafos */
+p {
+    color: #cccccc;
+}
+
+/* Contenedor principal del juego */
+#game-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #333333;
+}
+
+/* Estilo de botones y enlaces */
+button,
+a {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+button:hover,
+a:hover {
+    background-color: #555555;
+}
+
+/* Contenedor y estilo del botón centrado */
+#center-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#add-wood-button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 20px 40px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#add-wood-button:hover {
+    background-color: #555555;
+}
