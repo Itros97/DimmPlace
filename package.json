@@ -2,10 +2,15 @@
   "name": "dimmplace",
   "version": "1.0.0",
   "description": "Un juego de aventura basado en texto",
-  "main": "dist/main.js",
+  "main": "electron/out/main.js",
   "scripts": {
-    "start": "tsc && electron .",
-    "build": "tsc"
+    "start": "npm run build && electron .",
+    "build": "npm run build-electron && npm run build-web",
+    "build-electron": "tsc --project ./electron/",
+    "build-electron-watch": "tsc --project ./electron/ -w",
+    "build-web": "tsc --project ./web/scripts/",
+    "build-web-watch": "tsc --project ./web/scripts/ -w",
+    "serve": "python3 -m http.server 5500"
   },
   "keywords": [],
   "author": "",
