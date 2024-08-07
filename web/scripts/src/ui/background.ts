@@ -1,4 +1,4 @@
-import Time from "../time.js";
+import Time from "../lib/time.js";
 
 export default class Background {
   static readonly DARK_CLASS = "dark";
