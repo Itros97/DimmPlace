@@ -27,6 +27,14 @@ export default class BonfireRoom extends View {
       },
     });
 
+    this.createButtons();
+    this.createRoomAudio();
+  }
+
+  /**
+   * Creates the buttons for the room
+   */
+  private createButtons() {
     const exploreButton = new UIComponent({
       type: "button",
       id: BonfireRoom.EXPLORE_BUTTON_ID,
@@ -65,17 +73,40 @@ export default class BonfireRoom extends View {
       id: BonfireRoom.ADD_BUTTON_ID,
       text: "Añadir leña",
       events: {
-        click: async () => await this.fadeInBackground(),
+        click: async () => {
+          (this.fireplaceAudio.element as HTMLAudioElement).play();
+          await this.fadeInBackground();
+        },
+      },
+    });
+  }
+
+  /**
+   * Creates the audio element for the room
+   */
+  private createRoomAudio() {
+    this.fireplaceAudio = new UIComponent({
+      type: "audio",
+      text: "Your browser does not support the audio element.",
+      attributes: {
+        // loop: "true",
+
+        controls: "false",
+      },
+      styles: {
+        visibility: "hidden",
       },
     });
 
-    this.fireplaceAudio = new UIComponent({
-      type: "audio",
+    const audioSource = new UIComponent({
+      type: "source",
       attributes: {
         src: "../resources/sounds/fireplace.mp3",
-        // loop: "true",
+        type: "audio/mpeg",
       },
     });
+
+    audioSource.appendTo(this.fireplaceAudio);
   }
 
   /**

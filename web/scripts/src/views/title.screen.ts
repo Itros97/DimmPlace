@@ -5,6 +5,7 @@ import Game, { ViewIds } from "../main.js";
 export default class TitleScreen extends View {
   private title: UIComponent;
   private startButton: UIComponent;
+  private titleSongAudio: UIComponent;
 
   constructor() {
     super({
@@ -39,9 +40,39 @@ export default class TitleScreen extends View {
     this.title.appendTo(this);
     this.startButton.appendTo(this);
     this.appendTo(container);
+    this.createRoomAudio();
+    this.titleSongAudio.appendTo(this);
+    (this.titleSongAudio.element as HTMLAudioElement).play();
   }
 
   private async startGame() {
     await Game.instance.loadView(ViewIds.BonfireRoom);
+  }
+  /**
+   * Creates the audio element for the room
+   */
+  private createRoomAudio() {
+    this.titleSongAudio = new UIComponent({
+      type: "audio",
+      text: "Your browser does not support the audio element.",
+      attributes: {
+        loop: "true",
+
+        controls: "false",
+      },
+      styles: {
+        visibility: "hidden",
+      },
+    });
+
+    const audioSource = new UIComponent({
+      type: "source",
+      attributes: {
+        src: "../resources/music/ChaosDay.mp3",
+        type: "audio/mpeg",
+      },
+    });
+
+    audioSource.appendTo(this.titleSongAudio);
   }
 }

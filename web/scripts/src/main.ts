@@ -2,6 +2,7 @@ import ISavestate from "./interfaces/savestate.js";
 import IView from "./interfaces/view.js";
 import { UIComponent } from "./lib/ui.component.js";
 import BonfireRoom from "./views/bonfire.room.js";
+import ErrorView from "./views/error.view.js";
 import TitleScreen from "./views/title.screen.js";
 
 export enum ViewIds {
@@ -16,8 +17,27 @@ export default class Game {
   private container: UIComponent;
   private savestate: ISavestate;
   private currentView: IView;
+  private resetButton: UIComponent;
 
   constructor() {
+    this.resetButton = new UIComponent({
+      type: "button",
+      id: "resetButton",
+      text: "Reset",
+      events: {
+        click: async () => {
+          localStorage.removeItem(Game.SAVESTATE_KEY);
+          window.location.reload();
+        },
+      },
+      styles: {
+        position: "fixed",
+        top: "0",
+        right: "0",
+      },
+    });
+    this.resetButton.appendTo(document.body);
+
     this.container = new UIComponent({
       id: "container",
     });
@@ -28,6 +48,12 @@ export default class Game {
    * Start the game
    */
   public async start() {
+    const error = this.checkPermissions();
+    if (error) {
+      await this.loadErrorView(error);
+      return;
+    }
+
     await this.loadSavestate();
     await this.loadCurrentView();
   }
@@ -67,6 +93,15 @@ export default class Game {
   }
 
   /**
+   * Load an error view
+   */
+  private async loadErrorView(message: string) {
+    this.container.clear();
+    this.currentView = new ErrorView(message);
+    await this.currentView.show(this.container);
+  }
+
+  /**
    * Load current view
    */
   private async loadCurrentView() {
@@ -82,7 +117,11 @@ export default class Game {
     await this.currentView.show(this.container);
   }
 
-  private async showMenu() {}
+  private checkPermissions(): string {
+    const generalNavigator: any = navigator;
+    if (generalNavigator.getAutoplayPolicy("mediaelement") !== "allowed")
+      return "Please enable autoplay in your browser settings to play this game.";
+  }
 }
 
 // On window load, start the game
